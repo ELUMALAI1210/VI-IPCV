@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoadDefect AI | Pothole & Crack Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-road-circle-exclamation"></i>
+                <h1>RoadDefect <span>AI</span></h1>
+            </div>
+            <div class="status-badge">
+                <span class="status-dot"></span> System Active
+            </div>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <div class="card upload-card" id="drop-zone">
+                    <input type="file" id="file-input" hidden accept="image/*">
+                    <div class="upload-content">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <h2>Upload Road Image</h2>
+                        <p>Drag and drop or click to select a JPEG/PNG image of the road surface</p>
+                        <button class="btn btn-primary" id="upload-btn">Browse Files</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="results-section hidden" id="results-area">
+                <div class="stats-grid">
+                    <div class="stat-card pothole-stat">
+                        <div class="stat-icon"><i class="fa-solid fa-circle-dot"></i></div>
+                        <div class="stat-info">
+                            <h3>Potholes</h3>
+                            <p id="p-count">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card crack-stat">
+                        <div class="stat-icon"><i class="fa-solid fa-code-branch"></i></div>
+                        <div class="stat-info">
+                            <h3>Cracks</h3>
+                            <p id="c_count">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-display card">
+                    <div class="display-header">
+                        <h2>Final Detection Result</h2>
+                        <button class="btn btn-outline" id="reset-btn">New Analysis</button>
+                    </div>
+                    <div class="image-container">
+                        <img id="result-img" src="" alt="Final Detection Result">
+                        <div class="loader-overlay hidden" id="loader">
+                            <div class="spinner"></div>
+                            <p>Analyzing Road Surface...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analysis-grid">
+                    <div class="card sub-card">
+                        <h4>Original Image</h4>
+                        <img id="original-img" src="" alt="Original">
+                    </div>
+                    <div class="card sub-card">
+                        <h4>Edge Detection (Canny)</h4>
+                        <img id="edges-img" src="" alt="Edges">
+                    </div>
+                    <div class="card sub-card">
+                        <h4>Binary Thresholding</h4>
+                        <img id="thresh-img" src="" alt="Threshold">
+                    </div>
+                    <div class="card sub-card">
+                        <h4>Morphological Ops</h4>
+                        <img id="morph-img" src="" alt="Morphology">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 RoadDefect AI. Built for Smart Infrastructure Management.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
